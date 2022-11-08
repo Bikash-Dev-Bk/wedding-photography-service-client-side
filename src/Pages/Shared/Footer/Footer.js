@@ -4,7 +4,7 @@ import './Footer.css';
 
 const Footer = () => {
   return (
-    <footer className="footer footer-center p-10 bg-black text-primary-content">
+    <footer className="footer footer-center p-10 bg-black text-white">
       <div>
         <div className="footer-image">
         <img src={logo} alt="" />

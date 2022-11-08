@@ -39,7 +39,7 @@ const Header = () => {
           </ul>
         </div>
 
-        <div className="header-image flex justify-items-center py-3 ">
+        <div className="header-image flex justify-items-center py-4 ">
           <Link className="btn btn-ghost normal-case text-xl">
             <img src={logo} alt="" />
           </Link>
