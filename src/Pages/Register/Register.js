@@ -1,9 +1,14 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 
 const Register = () => {
     const {createUser, googleSignIn} = useContext(AuthContext);
+
+    const location = useLocation();
+    const navigate = useNavigate();
+  
+    const from = location.state?.from?.pathname || '/';
 
     const handleSignUp = (event) => {
         event.preventDefault();
@@ -16,6 +21,7 @@ const Register = () => {
         createUser(email ,password)
         .then(result => {
           const user = result.user;
+          navigate(from, {replace: true})
           console.log(user);
         })
         .catch(err => console.error(err))
@@ -25,6 +31,7 @@ const Register = () => {
         googleSignIn()
         .then( result => {
             const user = result.user;
+            navigate(from, {replace: true})
             console.log(user);
         })
         .catch(error => console.error(error))
