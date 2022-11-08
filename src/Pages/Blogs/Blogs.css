@@ -25,11 +25,3 @@
     }
 }
 
-/*------Tablet devics--------*/
-
-@media only screen and (min-width: 689px) and (max-width: 991px) {
-    .question-answer-container{
-        margin-right: 30px;
-        margin-left: 30px;
-    }
-}

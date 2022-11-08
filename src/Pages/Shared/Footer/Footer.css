@@ -2,3 +2,18 @@
     height: 140px;
     width: 140px;
 }
+
+
+
+/* ---------------------------------
+            Media Queries
+------------------------------------*/
+
+/*------Mobile devices--------*/
+
+@media only screen and (max-width: 688px) {
+    .footer-image img{
+        height: 100px;
+        width: 100px;
+    }
+}
