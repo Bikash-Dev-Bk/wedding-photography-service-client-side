@@ -1,0 +1,35 @@
+
+.question-container{
+    margin-top: 60px;
+}
+
+.question-answer{
+    color: black;
+    background-color:  #fad7a2;
+    padding: 30px;
+    margin: 30px;
+    border-radius: 15px;
+}
+
+
+/* ---------------------------------
+            Media Queries
+------------------------------------*/
+
+/*------Mobile devices--------*/
+
+@media only screen and (max-width: 688px) {
+    .question-answer-container{
+        margin-right: 10px;
+        margin-left: 10px;
+    }
+}
+
+/*------Tablet devics--------*/
+
+@media only screen and (min-width: 689px) and (max-width: 991px) {
+    .question-answer-container{
+        margin-right: 30px;
+        margin-left: 30px;
+    }
+}
