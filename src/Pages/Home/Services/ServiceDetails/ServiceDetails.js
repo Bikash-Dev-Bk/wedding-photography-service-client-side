@@ -10,7 +10,7 @@ const ServiceDetails = () => {
     const desc = description.split('\n');
     setDesc(desc);
 
-  },[])
+  },[description])
 
   return (
     <div>
