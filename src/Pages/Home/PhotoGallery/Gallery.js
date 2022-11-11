@@ -2,7 +2,6 @@ import React from "react";
 
 const Gallery = ({ photo }) => {
   const  {image}  = photo;
-  console.log("abc",image)
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
       <figure >
