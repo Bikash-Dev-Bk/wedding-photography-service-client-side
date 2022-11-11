@@ -1,18 +1,31 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ServiceDetails = () => {
   const { _id, title, img, price, ratting, description } = useLoaderData();
+
+  const [desc, setDesc]= useState([])
+
+  useEffect(()=>{
+    const desc = description.split('\n');
+    setDesc(desc);
+
+  },[])
+
   return (
     <div>
       <h2 className="text-center text-4xl font-bold"> Details for {title}</h2>
-      <div className="card card-compact w-6/12 mx-auto bg-base-100 shadow-xl my-12">
+      <div className="card card-compact w-3/4 lg:w-3/5 md:w-3/4 mx-auto bg-base-100 shadow-xl my-12">
         <figure className="card-image">
           <img className="p-5 rounded" src={img} alt="" />
         </figure>
         <div className="card-body">
           <h2 className="card-title font-bold">{title}</h2>
-          <p className="text-justify">{description}</p>
+          <div>
+              {
+                desc.map((description, index) => <p key={index} className='text-justify'>{description}</p>)
+              }
+            </div>
 
           <div className="">
             <p className="text-2xl text-orange-600 font-semibold">
