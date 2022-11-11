@@ -5,6 +5,7 @@ import Blogs from "../../Pages/Blogs/Blogs";
 import Home from "../../Pages/Home/Home/Home";
 import ServiceDetails from "../../Pages/Home/Services/ServiceDetails/ServiceDetails";
 import Services from "../../Pages/Home/Services/Services";
+import InvalidPage from "../../Pages/InvalidPage/InvalidPage";
 import Login from "../../Pages/Login/Login";
 import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Register from "../../Pages/Register/Register";
@@ -51,15 +52,18 @@ const router = createBrowserRouter([
         path: "/services",
         element: <Services></Services>,
       },
+
       {
         path: "/services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(
-            `http://localhost:5000/services/${params.id}`
-          ),
-      },
-    ],
+          fetch(`http://localhost:5000/services/${params.id}`),
+      }
+    ]
+  },
+  {
+    path: "*",
+    element: <InvalidPage></InvalidPage>,
   },
 ]);
 
