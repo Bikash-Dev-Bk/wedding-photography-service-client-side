@@ -3,7 +3,7 @@ import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  const { _id, title, img, price, ratting, description } = service;
+  const { _id, title, img, price, description } = service;
 
   return (
     <div className="card card-compact w-96 bg-base-100 shadow-xl">
@@ -20,9 +20,6 @@ const ServiceCard = ({ service }) => {
         <div className="">
           <p className="text-2xl text-orange-600 font-semibold">
             Price: {price}
-          </p>
-          <p className="text-2xl text-orange-600 font-semibold">
-            Rating: {ratting} Stars
           </p>
         </div>
         <Link to={`/services/${_id}`}>

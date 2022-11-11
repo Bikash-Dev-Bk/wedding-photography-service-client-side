@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 
 const ServiceDetails = () => {
-  const { _id, title, img, price, ratting, description } = useLoaderData();
+  const { _id, title, img, price, description } = useLoaderData();
 
   const [desc, setDesc]= useState([])
 
@@ -30,9 +30,6 @@ const ServiceDetails = () => {
           <div className="">
             <p className="text-2xl text-orange-600 font-semibold">
               Price: {price}
-            </p>
-            <p className="text-2xl text-orange-600 font-semibold">
-              Rating: {ratting} Stars
             </p>
           </div>
         </div>
