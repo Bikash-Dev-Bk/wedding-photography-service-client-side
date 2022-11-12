@@ -2,9 +2,11 @@ import React, { useContext, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
+import BeatLoader from "react-spinners/BeatLoader";
 
 const Login = () => {
   useSetTitle("Login");
+
   const { signIn, googleSignIn } = useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
@@ -13,10 +15,12 @@ const Login = () => {
 
   const [success, setSuccess] = useState(false);
   const [passwordError, setPasswordError] = useState("");
+  const [isSpinnerShow, setIsSpinnerShow] = useState(false);
 
   const handleLogin = (event) => {
     event.preventDefault();
     setSuccess(false);
+    setIsSpinnerShow(true);
 
     const form = event.target;
     const email = form.email.value;
@@ -27,11 +31,10 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
-
         setSuccess(true);
         form.reset();
-
         navigate(from, { replace: true });
+        setIsSpinnerShow(false);
       })
       .catch((err) => {
         console.error(err);
@@ -43,7 +46,9 @@ const Login = () => {
     googleSignIn()
       .then((result) => {
         const user = result.user;
+        
         navigate(from, { replace: true });
+        setIsSpinnerShow(false);
         console.log(user);
       })
       .catch((error) => console.error(error));
@@ -96,7 +101,13 @@ const Login = () => {
               <p className="text-red-500">Wrong password or email</p>
             )}
             <div className="form-control mt-6">
-              <button className="btn btn-primary">Login</button>
+              <button className="btn btn-primary">
+                {isSpinnerShow ? (
+                  <BeatLoader color="#ffffff" />
+                ) : (
+                  "Login"
+                )}
+              </button>
             </div>
             <p className="text-center">Or login with</p>
             <button

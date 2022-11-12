@@ -1,8 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import useSetTitle from "../../../hooks/useSetTitle";
 import ServiceCard from "./ServiceCard";
+import FadeLoader from "react-spinners/FadeLoader";
 
 const Services = () => {
+  useSetTitle("Services");
   const [services, setServices] = useState([]);
   const [location, setLocation] = useState("");
 
@@ -21,6 +24,11 @@ const Services = () => {
       <h2 className="font-bold text-5xl text-center mt-12">
         Our Services
       </h2>
+      <div className="flex justify-center my-5">
+      {
+        services.length <= 0 && <FadeLoader  color="#36d7b7" />
+      }
+      </div>
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-6">
         {location === ""
           ? services

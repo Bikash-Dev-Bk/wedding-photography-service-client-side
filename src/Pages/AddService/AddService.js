@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useSetTitle from '../../hooks/useSetTitle';
 import './AddService.css';
+import toast, { Toaster } from 'react-hot-toast';
 
 const AddService = () => {
     const [services, setServices] = useState([]);
@@ -34,7 +35,9 @@ const AddService = () => {
     .then(data => {
       console.log(data)
       const newService = [...services, service];
+      
       setServices(newService);
+      toast.success('Successfully added service');
     })
     .catch(err => console.error(err))
   }
@@ -57,6 +60,7 @@ const AddService = () => {
         <br />
         <br />
         <button className="btn mb-10" type="submit">Add Service</button>
+        <Toaster />
         
       </form>
     </div>
