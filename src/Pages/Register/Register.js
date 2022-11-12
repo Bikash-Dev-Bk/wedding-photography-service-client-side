@@ -1,8 +1,10 @@
 import React, { useContext } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthProvider";
+import useSetTitle from "../../hooks/useSetTitle";
 
 const Register = () => {
+  useSetTitle("Register");
     const {createUser, googleSignIn} = useContext(AuthContext);
 
     const location = useLocation();

@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
+import useSetTitle from "../../../../hooks/useSetTitle";
 
 const ServiceDetails = () => {
+  useSetTitle("Service Details");
   const { _id, title, img, price, description } = useLoaderData();
 
   const [desc, setDesc]= useState([])

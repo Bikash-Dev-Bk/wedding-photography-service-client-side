@@ -1,7 +1,9 @@
 import React from "react";
+import useSetTitle from "../../hooks/useSetTitle";
 import "./Blogs.css";
 
 const Blogs = () => {
+  useSetTitle("Blogs");
   return (
     <div className="question-answer-container pt-5 mx-30">
       <h1 className="text-2xl text-center font-medium">

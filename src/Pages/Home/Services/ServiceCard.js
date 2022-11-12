@@ -1,8 +1,10 @@
 import React from "react";
 import { PhotoProvider, PhotoView } from "react-photo-view";
 import { Link } from "react-router-dom";
+import useSetTitle from "../../../hooks/useSetTitle";
 
 const ServiceCard = ({ service }) => {
+  useSetTitle("Services");
   const { _id, title, img, price, description } = service;
 
   return (
