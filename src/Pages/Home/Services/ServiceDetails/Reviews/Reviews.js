@@ -68,6 +68,7 @@ const Reviews = () => {
                 cols="50"
                 rows="5"
                 placeholder="Add a review"
+                required
               ></textarea>
               <br />
               <button type="submit" className="btn btn-primary">
