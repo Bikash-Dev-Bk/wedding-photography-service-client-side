@@ -1,13 +1,39 @@
 import React, { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/AuthProvider";
 import useSetTitle from "../../hooks/useSetTitle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
+import toast, { Toaster } from "react-hot-toast";
 
 const MyReviews = () => {
   useSetTitle("My Reviews");
 
   const { user } = useContext(AuthContext);
-  console.log(user);
+
   const [reviews, setReviews] = useState([]);
+  const [displayReviews, setDisplayReviews] = useState([reviews]);
+
+  const handleDelete = (review) => {
+    const agree = window.confirm(
+      `Are you sure you want to delete: ${review.serviceTitle}`
+    );
+
+    if (agree) {
+      fetch(`http://localhost:5000/reviews/${review._id}`, {
+        method: "DELETE",
+      })
+        .then((res) => res.json())
+        .then((data) => {
+          if (data.deletedCount > 0) {
+            const remainingReviews = displayReviews.filter(
+              (rev) => rev._id !== review._id
+            );
+            setDisplayReviews(remainingReviews);
+            toast.success("Review deleted successfully.");
+          }
+        });
+    }
+  };
 
   useEffect(() => {
     fetch("http://localhost:5000/reviews")
@@ -32,8 +58,19 @@ const MyReviews = () => {
                     <span className="font-bold">Review:</span> {review.myReview}
                   </p>
                   <div className="card-actions justify-end">
-                    <button className="btn btn-primary">Edit</button>
-                    <button className="btn btn-error">Delete</button>
+                    <button className="btn btn-primary">
+                      <FontAwesomeIcon
+                        className="dumbbell"
+                        icon={faPenToSquare}
+                      />
+                    </button>
+                    <button
+                      className="btn btn-error text-white"
+                      onClick={() => handleDelete(review)}
+                    >
+                      <FontAwesomeIcon className="dumbbell" icon={faTrash} />
+                    </button>
+                    <Toaster />
                   </div>
                 </div>
               </div>
