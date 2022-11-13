@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useLoaderData } from 'react-router-dom';
+import toast, { Toaster } from "react-hot-toast";
 
 const Update = () => {
     const storedReview = useLoaderData();
@@ -18,7 +19,7 @@ const Update = () => {
         .then(res => res.json())
         .then(data => {
             if (data.modifiedCount > 0){
-                alert('review updated')
+                toast.success("Review updated successfully.");
                 console.log(data);
             }
             
@@ -47,6 +48,7 @@ const Update = () => {
               <button type="submit" className="btn btn-primary">
                 Update
               </button>
+              <Toaster />
             </form>
     );
 };
