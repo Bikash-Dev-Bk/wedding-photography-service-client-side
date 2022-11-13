@@ -5,7 +5,7 @@ import Reviews from "./Reviews/Reviews";
 
 const ServiceDetails = () => {
   useSetTitle("Service Details");
-  const { _id, title, img, price, description } = useLoaderData();
+  const { title, img, price, description } = useLoaderData();
 
   const [desc, setDesc] = useState([]);
 

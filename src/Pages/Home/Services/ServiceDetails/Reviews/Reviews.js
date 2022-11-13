@@ -1,12 +1,13 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLoaderData } from "react-router-dom";
+import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../../../contexts/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
 
 const Reviews = () => {
-    const { _id , title,} = useLoaderData();
+  const { _id, title } = useLoaderData();
 
   const { user } = useContext(AuthContext);
+  const location = useLocation();
 
   const [reviews, setReviews] = useState([]);
 
@@ -25,7 +26,14 @@ const Reviews = () => {
     const serviceId = _id;
     const serviceTitle = title;
 
-    const review = { myReview, userEmail, userName, userPhoto, serviceId , serviceTitle};
+    const review = {
+      myReview,
+      userEmail,
+      userName,
+      userPhoto,
+      serviceId,
+      serviceTitle,
+    };
     event.target.reset();
 
     fetch("http://localhost:5000/reviews", {
@@ -58,7 +66,7 @@ const Reviews = () => {
                 name="myReview"
                 id="myReview"
                 cols="50"
-                rows="10"
+                rows="5"
                 placeholder="Add a review"
               ></textarea>
               <br />
@@ -72,7 +80,12 @@ const Reviews = () => {
           <div>
             <h3 className="text-2xl font-bold">
               Please{" "}
-              <Link to="/login" className="text-blue-700">
+              <Link
+                to="/login"
+                state={{ from: location }}
+                replace
+                className="text-blue-700"
+              >
                 login
               </Link>{" "}
               to add a review
@@ -80,21 +93,29 @@ const Reviews = () => {
           </div>
         )}
       </div>
+
       <div>
-        
         {reviews.map((review) => (
-            <div className="mt-5">
-                {
-                    _id === review.serviceId ?
-                    <div>
-                        <img src={review.userPhoto} alt="proPic" style={{ height: "40px" }} className="rounded-full mr-5" />
-                        <p>{review.userName}</p>
-                        <p className="mt-2">comment: {review.myReview}</p>
-                    </div>
-                    :
-                    <></>
-                } 
+          <div className="mt-5">
+            <div>
+              {_id === review.serviceId ? (
+                <div>
+                  <div>
+                    <img
+                      src={review.userPhoto}
+                      alt="proPic"
+                      style={{ height: "40px" }}
+                      className="rounded-full mr-5"
+                    />
+                    <p>{review.userName}</p>
+                    <p className="mt-2">comment: {review.myReview}</p>
+                  </div>
+                </div>
+              ) : (
+                <></>
+              )}
             </div>
+          </div>
         ))}
       </div>
     </div>

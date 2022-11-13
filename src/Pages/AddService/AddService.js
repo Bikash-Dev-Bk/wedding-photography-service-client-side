@@ -44,19 +44,20 @@ const AddService = () => {
 
   return (
     <div className="App">
+      <h2 className='text-4xl font-bold mb-5'>Add Your New Service From  Here</h2>
       <form onSubmit={handleAddServices} className="form">
         <br />
         <br />
-        <input type="text" name="title" id="title" placeholder='Title' />
+        <input type="text" name="title" id="title" placeholder='Title' required />
         <br />
         <br />
-        <input type="text" name="description" id="description" placeholder=' Description'/>
+        <input type="text" name="description" id="description" placeholder=' Description' required/>
         <br />
         <br />
-        <input type="text" name="price" id="price" placeholder=' Price'/>
+        <input type="text" name="price" id="price" placeholder=' Price' required/>
         <br />
         <br />
-        <input type="text" name="img" id="img" placeholder=' imgUrl'/>
+        <input type="text" name="img" id="img" placeholder=' imgUrl' required/>
         <br />
         <br />
         <button className="btn mb-10" type="submit">Add Service</button>
