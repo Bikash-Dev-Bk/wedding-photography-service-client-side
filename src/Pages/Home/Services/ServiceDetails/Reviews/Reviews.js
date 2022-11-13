@@ -113,7 +113,7 @@ const Reviews = () => {
                       className="rounded-full mr-5"
                     />
                     :
-                    <FontAwesomeIcon className="dumbbell" icon={faUser} />
+                    <FontAwesomeIcon icon={faUser} />
                     }
                     <p>{review.userName}</p>
                     <p className="mt-2">comment: {review.myReview}</p>

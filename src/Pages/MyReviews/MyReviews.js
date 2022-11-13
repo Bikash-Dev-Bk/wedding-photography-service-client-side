@@ -4,6 +4,7 @@ import useSetTitle from "../../hooks/useSetTitle";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTrash, faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import toast, { Toaster } from "react-hot-toast";
+import { Link } from "react-router-dom";
 
 const MyReviews = () => {
   useSetTitle("My Reviews");
@@ -61,17 +62,17 @@ const MyReviews = () => {
                     <span className="font-bold">Review:</span> {review.myReview}
                   </p>
                   <div className="card-actions justify-end">
+                    <Link to={`/update/${review._id}`}>
                     <button className="btn btn-primary">
-                      <FontAwesomeIcon
-                        className="dumbbell"
-                        icon={faPenToSquare}
+                      <FontAwesomeIcon icon={faPenToSquare}
                       />
                     </button>
+                    </Link>
                     <button
                       className="btn btn-error text-white"
                       onClick={() => handleDelete(review)}
                     >
-                      <FontAwesomeIcon className="dumbbell" icon={faTrash} />
+                      <FontAwesomeIcon icon={faTrash} />
                     </button>
                     <Toaster />
                   </div>

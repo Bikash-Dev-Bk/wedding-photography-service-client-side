@@ -9,6 +9,7 @@ import InvalidPage from "../../Pages/InvalidPage/InvalidPage";
 import Login from "../../Pages/Login/Login";
 import MyReviews from "../../Pages/MyReviews/MyReviews";
 import Register from "../../Pages/Register/Register";
+import Update from "../../Pages/Update/Update";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 const router = createBrowserRouter([
@@ -58,6 +59,11 @@ const router = createBrowserRouter([
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
           fetch(`http://localhost:5000/services/${params.id}`),
+      },
+      {
+        path:'/update/:id',
+        element: <Update></Update>, 
+        loader: ({params}) => fetch(`http://localhost:5000/reviews/${params.id}`)
       }
     ]
   },
