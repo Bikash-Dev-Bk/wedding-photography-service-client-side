@@ -41,7 +41,7 @@ const ServiceDetails = () => {
         </div>
       </div>
       <div className=" mb-10">
-        <h2 className="text-center text-5xl font-bold">Reviews of {title}</h2>
+        <h2 className="text-center text-5xl font-bold mb-10">Reviews of {title}</h2>
         <div>
           <Reviews></Reviews>
         </div>
