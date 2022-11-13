@@ -2,6 +2,8 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData, useLocation } from "react-router-dom";
 import { AuthContext } from "../../../../../contexts/AuthProvider";
 import toast, { Toaster } from "react-hot-toast";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser } from "@fortawesome/free-solid-svg-icons";
 
 const Reviews = () => {
   const { _id, title } = useLoaderData();
@@ -21,7 +23,7 @@ const Reviews = () => {
     event.preventDefault();
     const myReview = event.target.myReview.value;
     const userEmail = user.email;
-    const userName = user.displayName;
+    const userName = user?.displayName || 'null';
     const userPhoto = user.photoURL;
     const serviceId = _id;
     const serviceTitle = title;
@@ -102,12 +104,17 @@ const Reviews = () => {
               {_id === review.serviceId ? (
                 <div>
                   <div>
-                    <img
+                    {
+                      review.userPhoto?
+                      <img
                       src={review.userPhoto}
                       alt="proPic"
                       style={{ height: "40px" }}
                       className="rounded-full mr-5"
                     />
+                    :
+                    <FontAwesomeIcon className="dumbbell" icon={faUser} />
+                    }
                     <p>{review.userName}</p>
                     <p className="mt-2">comment: {review.myReview}</p>
                   </div>

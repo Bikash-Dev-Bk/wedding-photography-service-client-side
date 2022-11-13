@@ -44,6 +44,9 @@ const MyReviews = () => {
   return (
     <div>
       <h3 className="text-center my-10 text-5xl font-bold">My Reviews</h3>
+
+      {/* {reviews.length <= 0 && <p>No reviews were added</p>} */}
+
       <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-6">
         {reviews.map((review, index) => (
           <div review={review} key={index}>
