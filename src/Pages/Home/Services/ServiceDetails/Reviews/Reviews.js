@@ -48,7 +48,7 @@ const Reviews = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const newReview = [...reviews, review];
+        const newReview = [review,...reviews];
 
         setReviews(newReview);
         toast.success("Successfully added review");
