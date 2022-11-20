@@ -58,14 +58,19 @@ const router = createBrowserRouter([
         path: "/services/:id",
         element: <ServiceDetails></ServiceDetails>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/services/${params.id}`),
+          fetch(
+            `https://service-review-server-side-liard.vercel.app/services/${params.id}`
+          ),
       },
       {
-        path:'/update/:id',
-        element: <Update></Update>, 
-        loader: ({params}) => fetch(`http://localhost:5000/reviews/update/${params.id}`)
-      }
-    ]
+        path: "/update/:id",
+        element: <Update></Update>,
+        loader: ({ params }) =>
+          fetch(
+            `https://service-review-server-side-liard.vercel.app/reviews/update/${params.id}`
+          ),
+      },
+    ],
   },
   {
     path: "*",

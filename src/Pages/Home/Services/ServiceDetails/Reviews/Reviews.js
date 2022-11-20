@@ -14,7 +14,7 @@ const Reviews = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/reviews")
+    fetch("https://service-review-server-side-liard.vercel.app/reviews")
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, []);
@@ -23,7 +23,7 @@ const Reviews = () => {
     event.preventDefault();
     const myReview = event.target.myReview.value;
     const userEmail = user.email;
-    const userName = user?.displayName || 'null';
+    const userName = user?.displayName || "null";
     const userPhoto = user.photoURL;
     const serviceId = _id;
     const serviceTitle = title;
@@ -38,7 +38,7 @@ const Reviews = () => {
     };
     event.target.reset();
 
-    fetch("http://localhost:5000/reviews", {
+    fetch("https://service-review-server-side-liard.vercel.app/reviews", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -48,7 +48,7 @@ const Reviews = () => {
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
-        const newReview = [review,...reviews];
+        const newReview = [review, ...reviews];
 
         setReviews(newReview);
         toast.success("Successfully added review");
@@ -104,17 +104,16 @@ const Reviews = () => {
               {_id === review.serviceId ? (
                 <div>
                   <div>
-                    {
-                      review.userPhoto?
+                    {review.userPhoto ? (
                       <img
-                      src={review.userPhoto}
-                      alt="proPic"
-                      style={{ height: "40px" }}
-                      className="rounded-full mr-5"
-                    />
-                    :
-                    <FontAwesomeIcon icon={faUser} />
-                    }
+                        src={review.userPhoto}
+                        alt="proPic"
+                        style={{ height: "40px" }}
+                        className="rounded-full mr-5"
+                      />
+                    ) : (
+                      <FontAwesomeIcon icon={faUser} />
+                    )}
                     <p>{review.userName}</p>
                     <p className="mt-2">comment: {review.myReview}</p>
                   </div>

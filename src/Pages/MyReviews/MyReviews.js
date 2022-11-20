@@ -10,11 +10,9 @@ const MyReviews = () => {
   useSetTitle("My Reviews");
 
   const { user } = useContext(AuthContext);
-  console.log("inside my review", user);
 
   const [reviews, setReviews] = useState([]);
 
-  // const [displayReviews, setDisplayReviews] = useState([reviews]);
 
   const handleDelete = (review) => {
     const agree = window.confirm(
@@ -22,9 +20,12 @@ const MyReviews = () => {
     );
 
     if (agree) {
-      fetch(`http://localhost:5000/reviews/${review._id}`, {
-        method: "DELETE",
-      })
+      fetch(
+        `https://service-review-server-side-liard.vercel.app/reviews/${review._id}`,
+        {
+          method: "DELETE",
+        }
+      )
         .then((res) => res.json())
         .then((data) => {
           if (data.deletedCount > 0) {
@@ -39,7 +40,9 @@ const MyReviews = () => {
   };
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${user.email}`)
+    fetch(
+      `https://service-review-server-side-liard.vercel.app/reviews/${user.email}`
+    )
       .then((res) => res.json())
       .then((data) => {
         setReviews(data);
@@ -47,18 +50,16 @@ const MyReviews = () => {
       });
   }, [user.email]);
 
-  
-
   return (
     <div>
       <h3 className="text-center my-10 text-5xl font-bold">My Reviews</h3>
-      {
-        reviews.length === 0 ? 
-        <p className="text-4xl font-bold text-center my-5">No reviews were added</p>
-       :
+      {reviews.length === 0 ? (
+        <p className="text-4xl font-bold text-center my-5">
+          No reviews were added
+        </p>
+      ) : (
         <div className="grid gap-6 grid-cols-1 md:grid-cols-2 lg:grid-cols-3 my-6">
-        { 
-          reviews.map((review, index) => (
+          {reviews.map((review, index) => (
             <div review={review} key={index}>
               {review.userEmail === user.email ? (
                 <div className="card w-96 bg-base-100 shadow-xl">
@@ -91,10 +92,9 @@ const MyReviews = () => {
                 <></>
               )}
             </div>
-          ))
-        }
-      </div>
-      }
+          ))}
+        </div>
+      )}
     </div>
   );
 };
